@@ -22,18 +22,7 @@ after_success:
   - docker push dockertuka/multi-nginx
   - docker push dockertuka/multi-server
   - docker push dockertuka/multi-worker
-
-deploy:
-  - sudo: required
-services:
-  - docker
-
-before_install:
-  - docker build -t dockertuka/docker-react -f Dockerfile.dev .
-
-script:
-  - docker run -e CI=true dockertuka/docker-react npm run test -- --coverage
-
+  
 deploy:
   provider: elasticbeanstalk
   region: "eu-east-1"
